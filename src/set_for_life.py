@@ -11,7 +11,7 @@ pl_sfl = pl.DataFrame({
     # 5 main numbers from 1 to 47 (e.g: 02,04,07,22,34)
     "main_numbers": ','.join(fetch_sfl.main_numbers),
     # 1 special number from 1 to 10 (e.g: 02)
-    "special_number": ','.join(fetch_sfl.special_numbers)
+    "life_ball": ','.join(fetch_sfl.special_numbers)
 })
 
 with open("data/derived-csv/sfl.csv", mode="a", encoding="utf-8") as f:

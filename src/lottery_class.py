@@ -55,6 +55,10 @@ class Lottery:
         elif self.draw_type == Draw_Type.EUROMILLIONS:
             draw_html = soup.find("div", class_=Draw_Type.EUROMILLIONS.value)
             draw_numbers_html = draw_html.find("ul", class_="draw_numbers")
+        # thunderball
+        elif self.draw_type == Draw_Type.THUNDERBALL:
+            draw_html = soup.find("div", class_=Draw_Type.THUNDERBALL.value)
+            draw_numbers_html = draw_html.find("ul", class_="draw_numbers")
 
         # scraped main numbers
         main_numbers_html = draw_numbers_html.find_all("li", class_="number main")
