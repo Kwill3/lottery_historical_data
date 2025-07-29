@@ -1,0 +1,36 @@
+name: Cron - SFL Pipeline
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Automatically run at 9PM every Monday and Thursday (UTC)
+    - cron:  '0 21 * * 1,4'
+
+jobs:
+  updateSFL:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository content
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Run SFL ETL pipeline
+        run: python src/set_for_life.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.FG_PAT }}
+          commit-message: 'ci: bot append new data'
+          branch: 'data_set_for_life'
+          delete-branch: true
