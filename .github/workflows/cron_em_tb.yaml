@@ -8,7 +8,7 @@ on:
     - cron:  '0 21 * * 2,5'
 
 jobs:
-  scrapeWinningNumbers:
+  extractTransformDQ:
     runs-on: ubuntu-latest
 
     steps:
