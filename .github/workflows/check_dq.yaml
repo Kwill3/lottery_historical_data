@@ -2,6 +2,7 @@ name: Check Data Quality
 
 # Controls when the action will run.
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["Cron - EM & TB Pipeline", "Cron - Lotto & TB Pipeline", "Cron - SFL Pipeline"]
     types: [completed]
