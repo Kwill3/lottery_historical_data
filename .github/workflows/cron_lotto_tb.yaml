@@ -37,5 +37,5 @@ jobs:
         with:
           token: ${{ secrets.FG_PAT }}
           commit-message: 'ci: bot append new data'
-          branch: 'data_set_for_life'
+          branch: 'data_lotto_tb'
           delete-branch: true
