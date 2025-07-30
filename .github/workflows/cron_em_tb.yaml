@@ -31,6 +31,9 @@ jobs:
         run: python src/euromillions.py
       - name: Run Thunderball ETL pipeline
         run: python src/thunderball.py
+        
+      - name: Run Pytest
+        run: python -m pytest
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
