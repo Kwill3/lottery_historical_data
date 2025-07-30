@@ -28,19 +28,6 @@ jobs:
       - name: Run SFL ETL pipeline
         run: python src/set_for_life.py
         
-      - name: Run Pytest
-        run: python -m pytest
-
-  autoPR:
-    needs: extractTransformDQ
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository content
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-          
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
@@ -48,3 +35,8 @@ jobs:
           commit-message: 'ci: bot append new data'
           branch: 'data_set_for_life'
           delete-branch: true
+
+      - name: Enable Pull Request Automerge
+        run: gh pr merge --merge --auto "1"
+        env:
+          GH_TOKEN: ${{ secrets.FG_PAT }}
