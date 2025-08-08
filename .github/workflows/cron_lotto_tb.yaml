@@ -35,6 +35,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
+          title: Lotto & TB Data Update
           token: ${{ secrets.FG_PAT }}
           commit-message: 'ci: bot append new data'
           branch: 'data_lotto_tb'
