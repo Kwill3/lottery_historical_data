@@ -31,12 +31,14 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
+          title: SFL Data Update
           token: ${{ secrets.FG_PAT }}
           commit-message: 'ci: bot append new data'
           branch: 'data_set_for_life'
           delete-branch: true
 
+
       - name: Enable Pull Request Automerge
-        run: gh pr merge --merge --auto "1"
+        run: gh pr merge data_set_for_life --merge --auto
         env:
           GH_TOKEN: ${{ secrets.FG_PAT }}
