@@ -40,7 +40,7 @@ jobs:
           branch: 'data_lotto_tb'
           delete-branch: true
 
-      - name: Enable Pull Request Automerge
-        run: gh pr merge --merge --auto "1"
+      - name: Merge Pull Request
+        run: gh pr merge --merge "1"
         env:
           GH_TOKEN: ${{ secrets.FG_PAT }}
