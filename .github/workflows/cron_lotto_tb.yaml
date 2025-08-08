@@ -40,8 +40,8 @@ jobs:
           commit-message: 'ci: bot append new data'
           branch: 'data_lotto_tb'
           delete-branch: true
-
-      - name: Merge Pull Request
-        run: gh pr merge --merge "1"
+      
+      - name: Enable Pull Request Automerge
+        run: gh pr merge data_lotto_tb --merge --auto
         env:
           GH_TOKEN: ${{ secrets.FG_PAT }}
