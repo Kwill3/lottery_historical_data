@@ -35,12 +35,13 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
+          title: EM & TB Data Update
           token: ${{ secrets.FG_PAT }}
           commit-message: 'ci: bot append new data'
           branch: 'data_em_tb'
           delete-branch: true
 
       - name: Enable Pull Request Automerge
-        run: gh pr merge --merge --auto "1"
+        run: gh pr merge
         env:
           GH_TOKEN: ${{ secrets.FG_PAT }}
