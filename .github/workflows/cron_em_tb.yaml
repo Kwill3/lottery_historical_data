@@ -41,6 +41,6 @@ jobs:
           delete-branch: true
 
       - name: Enable Pull Request Automerge
-        run: gh pr merge --merge --auto "1"
+        run: gh pr merge
         env:
           GH_TOKEN: ${{ secrets.FG_PAT }}
