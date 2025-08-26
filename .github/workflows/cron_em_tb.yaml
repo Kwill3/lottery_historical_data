@@ -4,8 +4,8 @@ name: Cron - EM & TB Pipeline
 on:
   workflow_dispatch:
   schedule:
-    # Automatically run at 9PM every Tuesday and Friday
-    - cron:  '0 21 * * 2,5'
+    # Automatically run at 11PM every Tuesday and Friday
+    - cron:  '0 23 * * 2,5'
 
 jobs:
   extractTransformDQ:
