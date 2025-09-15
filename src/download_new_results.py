@@ -10,7 +10,7 @@ def main():
         # url for csv download
         url = results_page + f"{draw}/draw-history/csv"
         # output file name concatenated with date of download
-        filename = f"/data/raw/{draw}-draw-history-" + str(dt.date(dt.now())) + ".csv"
+        filename = f"data/raw/{draw}-draw-history-" + str(dt.date(dt.now())) + ".csv"
 
         urlretrieve(url, filename)
         df = pl.read_csv(filename)
@@ -21,7 +21,7 @@ def main():
         return sorted_df
 
     def master_df(draw: str):
-        m_df = pl.read_csv(f"/data/derived-csv/{draw}-draw-history.csv", has_header=True)
+        m_df = pl.read_csv(f"data/derived-csv/{draw}-draw-history.csv", has_header=True)
         return m_df
     
     def union_dfs(df1: pl.DataFrame, df2: pl.DataFrame):
@@ -36,7 +36,7 @@ def main():
         sorted_result_df = sort_df_rows(result_df)
 
         # sink df to master record file
-        sorted_result_df.write_csv(f"/data/derived-csv/{draw}-draw-history.csv", include_header=True)
+        sorted_result_df.write_csv(f"data/derived-csv/{draw}-draw-history.csv", include_header=True)
 
     update_csv_data("euromillions")
     update_csv_data("lotto")
