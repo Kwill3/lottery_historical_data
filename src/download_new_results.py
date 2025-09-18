@@ -29,14 +29,21 @@ def main():
         return unioned_df
     
     def update_csv_data(draw: str):
+        # get new draw data from website
         new_df = download_csv_to_df(draw)
+        # sort draws by draw number
         sorted_df = sort_df_rows(new_df)
+        # get master draw data
         m_df = master_df(draw)
+        # union new and master data
         result_df = union_dfs(m_df, sorted_df)
+        # sort by draw number
         sorted_result_df = sort_df_rows(result_df)
+        # remove duplicates
+        deduped_sorted_df = sorted_result_df.unique(maintain_order=True)
 
         # sink df to master record file
-        sorted_result_df.write_csv(f"data/derived-csv/{draw}-draw-history.csv", include_header=True)
+        deduped_sorted_df.write_csv(f"data/derived-csv/{draw}-draw-history.csv", include_header=True)
 
     update_csv_data("euromillions")
     update_csv_data("lotto")
