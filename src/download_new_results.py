@@ -2,13 +2,27 @@ from urllib.request import urlretrieve
 import polars as pl
 from datetime import datetime as dt
 
-results_page = "https://www.national-lottery.co.uk/results/"
+# New API endpoint for National Lottery
+api_base = "https://api-dfe.national-lottery.co.uk/draw-game/results/"
+
+# Mapping of draw names to game IDs
+game_ids = {
+    "euromillions": 33,
+    "lotto": 27,
+    "set-for-life": 43,
+    "thunderball": 37
+}
 
 
 def main():
     def download_csv_to_df(draw: str):
-        # url for csv download
-        url = results_page + f"{draw}/draw-history/csv"
+        # Get the game ID for this draw
+        game_id = game_ids.get(draw)
+        if game_id is None:
+            raise ValueError(f"Unknown draw type: {draw}")
+        
+        # url for csv download from new API
+        url = api_base + f"{game_id}/download"
         # output file name concatenated with date of download
         filename = f"data/raw/{draw}-draw-history-" + str(dt.date(dt.now())) + ".csv"
 
