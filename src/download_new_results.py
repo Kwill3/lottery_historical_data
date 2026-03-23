@@ -39,7 +39,11 @@ def main():
         return m_df
     
     def union_dfs(df1: pl.DataFrame, df2: pl.DataFrame):
-        unioned_df = pl.concat([df1, df2], how='align')
+        # Ensure all columns have matching dtypes before concat
+        # Convert all columns to string to avoid dtype mismatches
+        df1_str = df1.with_columns([pl.col(col).cast(pl.Utf8) for col in df1.columns])
+        df2_str = df2.with_columns([pl.col(col).cast(pl.Utf8) for col in df2.columns])
+        unioned_df = pl.concat([df1_str, df2_str], how='align')
         return unioned_df
     
     def update_csv_data(draw: str):
