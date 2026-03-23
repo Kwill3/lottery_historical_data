@@ -8,9 +8,9 @@ api_base = "https://api-dfe.national-lottery.co.uk/draw-game/results/"
 # Mapping of draw names to game IDs
 game_ids = {
     "euromillions": 33,
-    "lotto": 27,
-    "set-for-life": 43,
-    "thunderball": 37
+    "lotto": 1,
+    "set-for-life": 3,
+    "thunderball": 4
 }
 
 
